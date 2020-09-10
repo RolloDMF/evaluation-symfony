@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Edition Utilisateur</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Editer'}) }}
+
+    <a href="{{ path('user_show', {'id': user.id}) }}">Retour au profil</a>
+{% endblock %}

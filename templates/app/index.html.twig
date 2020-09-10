@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+        <div>
+            <h1>Bienvenue {{ user.name }} !</h1>
+        </div>
+    {% else %}
+        
+        <div>
+            <h1>Bienvenue !</h1>
+        </div>
+
+    {% endif %}
+{% endblock %}
