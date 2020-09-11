@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,11 +32,6 @@ class Articles
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      */
     private $auteur;
-
-    public function __construct()
-    {
-        $this->auteur = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -69,33 +63,16 @@ class Articles
     }
 
     /**
-     * @return Collection|User[]
+     * @return User
      */
-    public function getAuteur(): Collection
+    public function getAuteur()
     {
         return $this->auteur;
     }
 
-    public function addAuteur(User $auteur): self
+    public function setAuteur(User $auteur): self
     {
-        if (!$this->auteur->contains($auteur)) {
-            $this->auteur[] = $auteur;
-            $auteur->setArticles($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAuteur(User $auteur): self
-    {
-        if ($this->auteur->contains($auteur)) {
-            $this->auteur->removeElement($auteur);
-            // set the owning side to null (unless already changed)
-            if ($auteur->getArticles() === $this) {
-                $auteur->setArticles(null);
-            }
-        }
-
+        $this->auteur = $auteur;
         return $this;
     }
 }

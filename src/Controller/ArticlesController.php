@@ -37,7 +37,7 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
-            $article->addAuteur($this->getUser());
+            $article->setAuteur($this->getUser());
             $entityManager->flush();
 
             return $this->redirectToRoute('articles_index');

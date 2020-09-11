@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -38,6 +39,11 @@ class User implements UserInterface
      */
     private $articles;
 
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
     /**
      * @ORM\Column(type="json")
      */
@@ -84,14 +90,17 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getArticles(): ?Articles
+    public function getArticles()
     {
         return $this->articles;
     }
 
-    public function setArticles(?Articles $articles): self
+    public function setAuteur(User $articles): self
     {
-        $this->articles = $articles;
+        if (!$this->articles->contains($articles)) {
+            $this->articles[] = $articles;
+            $articles->setAuteur($this);
+        }
 
         return $this;
     }
