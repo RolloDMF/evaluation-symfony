@@ -64,6 +64,12 @@ class ArticlesController extends AbstractController
      */
     public function edit(Request $request, Articles $article): Response
     {
+
+        if($this->getUser()!= $article->getAuteur()){
+            $this->addFlash('alert', "Vous n'êtes pas l'auteur de l'article");
+            return $this->redirectToRoute('articles_index');
+        }
+
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
 
@@ -84,6 +90,11 @@ class ArticlesController extends AbstractController
      */
     public function delete(Request $request, Articles $article): Response
     {
+        if($this->getUser()!= $article->getAuteur()){
+            $this->addFlash('alert', "Vous n'êtes pas l'auteur de l'article");
+            return $this->redirectToRoute('articles_index');
+        }
+        
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
