@@ -35,7 +35,7 @@ class UserController extends AbstractController
             ));
             $entityManager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('user/new.html.twig', [

@@ -19,7 +19,6 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthanticatorAuthenticator
-
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
