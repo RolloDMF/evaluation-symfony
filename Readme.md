@@ -26,8 +26,8 @@ symfony serve
 
 ## Description du projet
 
-Le projet est un blog très simple qui permet à un utilisateur non connecté de consulter des articles et de s'inscrire
-Il permet a un utilisateur connecté d'ecrire des articles , et de les editer
+Le projet est un blog très simple qui permet à un utilisateur non connecté de consulter des articles et de s'inscrire.
+Il permet à un utilisateur connecté d'ecrire des articles, de les consulter et de les editer
 
 Le blogue implémente symfony security et permet donc une connexion securisée avec un mot de passe encrypté
 
