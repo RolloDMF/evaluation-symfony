@@ -30,7 +30,7 @@ class Articles
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="articles")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      */
     private $auteur;
 

@@ -34,7 +34,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="auteur")
+     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="auteur")
      */
     private $articles;
 
