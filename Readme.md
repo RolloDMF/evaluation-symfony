@@ -29,16 +29,19 @@ symfony serve
 ## Description du projet
 
 Le projet est un blog très simple qui permet à un utilisateur non connecté de consulter des articles et de s'inscrire.
-Il permet à un utilisateur connecté d'ecrire des articles, de les consulter et de les editer
+Il permet à un utilisateur connecté d'ecrire des articles, de les consulter et de les editer.
 
-Le blogue implémente symfony security et permet donc une connexion securisée avec un mot de passe encrypté
+Le blogue implémente symfony security et permet donc une connexion securisée avec un mot de passe encrypté.
 
-L'application comporte uniquement deux entity article et utilisateur
+L'application comporte uniquement deux entity, articles (avec id,titre, contenu, auteur) et user (avec id, nom, email, password et articles).
+
+Ces 2 entity sont stockées en base (chez nous MySQL, cf les instructions précédentes pour faire fonctionner l'appli).
 
 ### Details du projet 
 
 L'appli s'appuie sur 2 entity, déclinées en 2 controllers principalement (pour gérer les 2 entity) et 2 form (liés aux entity).
 La route du "home" (le "/" basique) nous amène sur l'index qui affiche le nom de l'utilisateur (page d'accueil). L'autre route principale est "/articles" qui va lister tous les articles et ensuite les routes (à partir de "/articles") "/new","{id}","/edit/{id}" et "{id}" mais avec la method= DELETE pour respectivement ajouter un article, aller sur l'article avec l'id désigné, éditer l'article désigné et supprimer l'article désigné.
+Cet ArticleController vérifie également l'User connecté avant de pouvoir éditer/supprimer un article (seul l'auteur de l'article peut l'éditer/le supprimer) et affiche un message si un autre utilisateur essaie.
 
 L'UserController, qui sert à créer un user dans l'appli (en gros l'inscription au site) fonctionne exactement de la même manière avec simplement un encodage du password avec l'algorithme d'encryptage définit dans le security.yaml
 
